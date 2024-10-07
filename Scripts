@@ -237,28 +237,6 @@ compression_if_does_not_exist() {
     # Note: For T2w images, we use sct_deepseg_sc with 2 kernel. Generally, it works better than sct_propseg and sct_deepseg_sc with 3d kernel.
         compression_if_does_not_exist ${file_t2w}  't2'  ${file_t2w}_label-compression-manual   'anat'
   
-        # Create left hemicord(*)
-        sct_maths -i label/atlas/PAM50_atlas_00.nii.gz -add label/atlas/PAM50_atlas_02.nii.gz label/atlas/PAM50_atlas_04.nii.gz label/atlas/PAM50_atlas_06.nii.gz label/atlas/PAM50_atlas_08.nii.gz label/atlas/PAM50_atlas_10.nii.gz label/atlas/PAM50_atlas_12.nii.gz label/atlas/PAM50_atlas_14.nii.gz label/atlas/PAM50_atlas_16.nii.gz label/atlas/PAM50_atlas_18.nii.gz label/atlas/PAM50_atlas_20.nii.gz label/atlas/PAM50_atlas_22.nii.gz label/atlas/PAM50_atlas_24.nii.gz label/atlas/PAM50_atlas_26.nii.gz label/atlas/PAM50_atlas_28.nii.gz label/atlas/PAM50_atlas_30.nii.gz label/atlas/PAM50_atlas_32.nii.gz label/atlas/PAM50_atlas_34.nii.gz -o PAM50_atlas_left_hemi_cord.nii.gz
-        # Create right hemicord(*)
-        sct_maths -i label/atlas/PAM50_atlas_01.nii.gz -add label/atlas/PAM50_atlas_03.nii.gz label/atlas/PAM50_atlas_05.nii.gz label/atlas/PAM50_atlas_07.nii.gz label/atlas/PAM50_atlas_09.nii.gz label/atlas/PAM50_atlas_11.nii.gz label/atlas/PAM50_atlas_13.nii.gz label/atlas/PAM50_atlas_15.nii.gz label/atlas/PAM50_atlas_17.nii.gz label/atlas/PAM50_atlas_19.nii.gz label/atlas/PAM50_atlas_21.nii.gz label/atlas/PAM50_atlas_23.nii.gz label/atlas/PAM50_atlas_25.nii.gz label/atlas/PAM50_atlas_27.nii.gz label/atlas/PAM50_atlas_29.nii.gz label/atlas/PAM50_atlas_31.nii.gz label/atlas/PAM50_atlas_33.nii.gz label/atlas/PAM50_atlas_35.nii.gz -o PAM50_atlas_right_hemi_cord.nii.gz
-        # Binarize both masks(*)
-        sct_maths -i PAM50_atlas_right_hemi_cord.nii.gz -bin 0.5 -o PAM50_atlas_right_hemi_cord_bin.nii.gz
-        sct_maths -i PAM50_atlas_left_hemi_cord.nii.gz -bin 0.5 -o PAM50_atlas_left_hemi_cord_bin.nii.gz
-        
-        # Create right and left hemicord masks of T2w(*)
-        python3 $PATH_SCRIPTS/create_right_left_seg_mask.py -seg ${file_t2_seg}.nii.gz -PAM50-R PAM50_atlas_right_hemi_cord_bin.nii.gz -PAM50-L PAM50_atlas_left_hemi_cord_bin.nii.gz
-        
-        # Compute Right CSA(*)
-        # Compute CSA perlevel
-        sct_process_segmentation -i ${file_t2_seg}_right.nii.gz -vertfile ${file_t2_labels}.nii.gz -vert 2:8 -perlevel 1 -o t2w_shape_right_perlevel.csv -append 1
-        # Compute CSA in PAM50 anatomical space perslice
-        sct_process_segmentation -i ${file_t2_seg}_right.nii.gz -vertfile ${file_t2_labels}.nii.gz -perslice 1 -normalize-PAM50 1 -v 2 -o t2w_shape_right_PAM50.csv -append 1
-        # Compute Left CSA(*)
-        # Compute CSA perlevel
-        sct_process_segmentation -i ${file_t2_seg}_left.nii.gz -vertfile ${file_t2_labels}.nii.gz -vert 2:8 -perlevel 1 -o t2w_shape_left_perlevel.csv -append 1
-        # Compute CSA in PAM50 anatomical space perslice
-        sct_process_segmentation -i ${file_t2_seg}_left.nii.gz -vertfile ${file_t2_labels}.nii.gz -perslice 1 -normalize-PAM50 1 -v 2 -o t2w_shape_left_PAM50.csv -append 1
-             
         cd ..
     else
         echo Skipping T2w
@@ -300,45 +278,17 @@ file_t2star=${file}_T2star
      	 # Warp template
         sct_warp_template -d ${file_t2star}.nii.gz -w warp_PAM50_t2s2${file_t2star}.nii.gz -qc ${PATH_QC} -qc-subject ${SUBJECT}
         
-        # Get vertebral coverage
-        python $PATH_SCRIPTS/utils/get_vertebral_coverage.py -vertfile ./label/template/PAM50_levels.nii.gz -subject ${SUBJECT} -o vert_coverage_t2star.csv
-        
         # Compute GM CSA (perlevel) between C2 and C8
         sct_process_segmentation -i ${file_t2star_gmseg}.nii.gz -vert 2:8 -angle-corr 0 -perlevel 1 -vertfile ./label/template/PAM50_levels.nii.gz -o ${PATH_RESULTS}/T2star/t2star_gm_csa.csv -append 1
        
         # Compute WM CSA (per level) between C2 and C8
 		sct_process_segmentation -i ${file_t2star_wmseg}.nii.gz -vert 2:8 -angle-corr 0 -perlevel 1 -vertfile ./label/template/PAM50_levels.nii.gz -o ${PATH_RESULTS}/T2star/t2star_wm_csa.csv -append 1
        
-       
 		#Extract signal intensity and volumes from all level
         #Extract WM intensity and size at all levels
         sct_extract_metric -i ${file_t2star}.nii.gz -f ${file_t2star_wmseg}.nii.gz -z 2:8 -method bin -perslice 1 -append 1 -o ${PATH_RESULTS}/T2star/wm_in_t2star.csv #same as above worked correctly
 		sct_extract_metric -i ${file_t2star}.nii.gz -f ${file_t2star_gmseg}.nii.gz -z 2:8 -method bin -perslice 1 -append 1 -o ${PATH_RESULTS}/T2star/gm_in_t2star.csv #only vert 7 worked for a DCM, same as above
 		
-        
-		# Create left GM hemicord
-        sct_maths -i label/atlas/PAM50_atlas_00.nii.gz -add label/atlas/PAM50_atlas_02.nii.gz label/atlas/PAM50_atlas_04.nii.gz label/atlas/PAM50_atlas_06.nii.gz label/atlas/PAM50_atlas_08.nii.gz label/atlas/PAM50_atlas_10.nii.gz label/atlas/PAM50_atlas_12.nii.gz label/atlas/PAM50_atlas_14.nii.gz label/atlas/PAM50_atlas_16.nii.gz label/atlas/PAM50_atlas_18.nii.gz label/atlas/PAM50_atlas_20.nii.gz label/atlas/PAM50_atlas_22.nii.gz label/atlas/PAM50_atlas_24.nii.gz label/atlas/PAM50_atlas_26.nii.gz label/atlas/PAM50_atlas_28.nii.gz label/atlas/PAM50_atlas_30.nii.gz label/atlas/PAM50_atlas_32.nii.gz label/atlas/PAM50_atlas_34.nii.gz -o PAM50_atlas_left_hemi_cord.nii.gz
-        # Create right GM hemicord
-        sct_maths -i label/atlas/PAM50_atlas_01.nii.gz -add label/atlas/PAM50_atlas_03.nii.gz label/atlas/PAM50_atlas_05.nii.gz label/atlas/PAM50_atlas_07.nii.gz label/atlas/PAM50_atlas_09.nii.gz label/atlas/PAM50_atlas_11.nii.gz label/atlas/PAM50_atlas_13.nii.gz label/atlas/PAM50_atlas_15.nii.gz label/atlas/PAM50_atlas_17.nii.gz label/atlas/PAM50_atlas_19.nii.gz label/atlas/PAM50_atlas_21.nii.gz label/atlas/PAM50_atlas_23.nii.gz label/atlas/PAM50_atlas_25.nii.gz label/atlas/PAM50_atlas_27.nii.gz label/atlas/PAM50_atlas_29.nii.gz label/atlas/PAM50_atlas_31.nii.gz label/atlas/PAM50_atlas_33.nii.gz label/atlas/PAM50_atlas_35.nii.gz -o PAM50_atlas_right_hemi_cord.nii.gz
-        # Binarize both masks
-        sct_maths -i PAM50_atlas_right_hemi_cord.nii.gz -bin 0.5 -o PAM50_atlas_right_hemi_cord_bin.nii.gz
-        sct_maths -i PAM50_atlas_left_hemi_cord.nii.gz -bin 0.5 -o PAM50_atlas_left_hemi_cord_bin.nii.gz
-        
-        # Create right and left GM hemicord masks of T2star
-        python3 $PATH_SCRIPTS/create_right_left_seg_mask.py -seg ${file_t2star_gmseg}.nii.gz -PAM50-R PAM50_atlas_right_hemi_cord_bin.nii.gz -PAM50-L PAM50_atlas_left_hemi_cord_bin.nii.gz
-        
-        # Compute Right GM CSA
-        # Compute CSA perlevel
-        sct_process_segmentation -i ${file_t2star_gmseg}_right.nii.gz  -perlevel 1 -vertfile ./label/template/PAM50_levels.nii.gz -vert 2:8 -o ${PATH_RESULTS}/T2star/t2star_shape_rightgm_perlevel.csv -append 1
-        # Compute CSA in PAM50 anatomical space perslice
-        sct_process_segmentation -i ${file_t2star_gmseg}_right.nii.gz  -perslice 1 -normalize-PAM50 1 -v 2 -o ${PATH_RESULTS}/T2star/t2star_shape_rightgm_PAM50.csv -append 1
-        
-        # Compute Left GM CSA
-        # Compute CSA perlevel
-        sct_process_segmentation -i ${file_t2star_gmseg}_left.nii.gz  -perlevel 1 -vertfile ./label/template/PAM50_levels.nii.gz -vert 2:8 -o ${PATH_RESULTS}/T2star/t2star_shape_leftgm_perlevel.csv -append 1
-        # Compute CSA in PAM50 anatomical space perslice
-        sct_process_segmentation -i ${file_t2star_gmseg}_left.nii.gz  -perslice 1 -normalize-PAM50 1 -v 2 -o ${PATH_RESULTS}/T2star/t2w_shape_leftgm_PAM50.csv -append 1
-       	
 			
 		#Extract left ventral horn GM intensity and size at all levels
 		sct_extract_metric -i ${file_t2star}.nii.gz -f ${file_t2star_gmseg}.nii.gz -z 2:8 -l 30 -method bin -perslice 1 -append 1 -o ${PATH_RESULTS}/T2star/LVgm_in_t2star28.csv 
