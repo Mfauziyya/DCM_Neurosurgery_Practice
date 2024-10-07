@@ -1,2 +1,2 @@
 # OUSpine_DCM
- Semi-automated Pipeline for Struactural Spinal Cord Analysis in DCM
+ Semi-automated Pipeline for Structural Analysis of Compressed Spinal Cord in DCM
