@@ -4,7 +4,7 @@
 # Created by Fauziyya Muhammad
 
 		
-data_path="/Users/mnt/Desktop/Mri"  # Adjust this path to the directory containing your files
+data_path="/Users/${working directory}"  # Adjust this path to the directory containing your files
 
 
 subjects=#list subjects 
@@ -19,8 +19,8 @@ echo "subject,mtr_in_wm_3,mtr_in_wm_5,mtr_in_dorsalcolumn_3,mtr_in_dorsalcolumn_
 
 # Loop over each subject
 for subject in "${subjects[@]}"; do
-    # Change to the subject's directory
-    subject_dir="${data_path}/sc_analysis_mtr_May/data_processed/${subject}/ses-spinalcord/anat/MTS"
+    # Change to your analysis folder and to the subject's directory
+    subject_dir="${data_path}/${analysis_folder}/data_processed/${subject}/ses-spinalcord/anat/MTS"
     #subject_dir="${data_path}/sc_analysis_mtr_sample/data_processed/${subject}/ses-spinalcord/anat/MTS"
     cd "$subject_dir" || continue
 
