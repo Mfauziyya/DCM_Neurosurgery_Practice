@@ -3,7 +3,7 @@
 #
 # Created by Ken Weber & Fauziyya 12/11/21.
 # 
-# Modified by Fauziyya Muhammad 11/15/23
+# Modified by Fauziyya Muhammad 11/15/23 using Spinalcord updatedd Command-Line Tools and Analysis Tutorials;https://spinalcordtoolbox.com/user_section/tutorials.html
 
 # Usage:
 # sct_run_batch  -path-data /Users/fmuhamma/Desktop/Mri/BIDS/sourcedata -jobs 1 -path-output  /Users/fmuhamma/Desktop/Mri/sc_analysis_dcm -script /Users/fmuhamma/Desktop/Mri/codes/preprocess_spinal_cord_new.sh -include-list [$subject_ID] exclude-list [$subject_ID]
