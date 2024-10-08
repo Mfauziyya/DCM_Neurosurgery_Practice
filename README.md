@@ -2,12 +2,13 @@
 
 ## Description
 
-Advanced MRI (MT, T2 weighted , and T2star) images are acquired from patients with clinical disgnosis of degenerative cervical myelopathy (DCM) and non-DCM participants (HC). The Spine generic protocol was used in MRI data acquisition;https://doi.org/10.1038/s41596-021-00588-0
+This repository contains the code for pre-processing structural T2-weighted, T2-star, and magnetization transfer MRI images. The primary goal is to estimate biomarkers such as spinal cord atrophy, gray matter atrophy, and white matter injury in patients with degenerative cervical myelopathy (DCM). This pipeline is designed to provide reproducible, standardized, and localized measures of spinal cord injury.
+### Objectives
 
-### Features
-
-- Feature 1
-- Feature 2
+1. Reproducible Analysis Pipeline: A user-friendly pipeline for batch processing of spinal cord morphometrics.
+2. Feature 2
+3. 
+4. 
 
 ### Installation
 
