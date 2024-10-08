@@ -1,7 +1,7 @@
 #!/bin/sh
 # Batch run All tracts
 #hc and CSM
-# Created by Fauziyya Muhammad
+# Created by Fauziyya Muhammad.
 
 		
 data_path="/Users/${working directory}"  # Adjust this path to the directory containing your files
