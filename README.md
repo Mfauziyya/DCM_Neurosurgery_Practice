@@ -36,6 +36,7 @@ Due to the ongoing nature of the study, patient data is still being collected an
 
 ## Analysis Directory Setup
 - Create a directory for processing and organize all input files as per the BIDS format.
+### Usage
 - Run the provided preprocessing script in batch mode.
 ```bash
     sct_run_batch -h
@@ -44,12 +45,27 @@ Due to the ongoing nature of the study, patient data is still being collected an
 
 #### example batch command
 ```bash
-sct_run_batch -path-data /define/your/Data/directory/sourcedata/ -jobs 100 -path-output /define/your/analysis/folder -script /specify/your/code/location/Preprocession_extraction.sh -exclude-list [ ses-brain ]
+sct_run_batch -path-data /define/your/data/directory/sourcedata/ -jobs 50 -path-output /define/your/analysis/folder -script /specify/your/code/location/Preprocession_extraction.sh -exclude-list [ ses-brain ]
 ```
 
 ### Preprocessing Steps
-1.	Spinal Cord Segmentation: Use sct_deepseg to segment the cervical spinal cord from surrounding neck tissues for DCM patients.
-2.	Quality Control:
+Spinal Cord MRI (T2 weighted, T2 star, MT) preprocessing include number of key steps 
+#### T2 weighted
+1. Spinal cord Segmentation
+```bash
+    sct_deepseg_sc -i ${file}.nii.gz -c t2 -qc qc
+```
+-    To segment the cervical spinal cord from surrounding neck tissues.
+-    include the qc flag to generate QC report for this step
+2. Vertebral labeling
+```bash
+   sct_label_vertebrae -i ${file}.nii.gz -s ${file_seg}.nii.gz -c t2 -qc qc
+```
+3. Registration to PAM50 template 
+```bash
+    sct_register_to_template -i ${file_t2w}.nii.gz -s ${file_t2_seg}.nii.gz -ldisc ${file_t2_labels_discs}.nii.gz -c t2 -qc qc
+```
+## Quality Control:
 o	After preprocessing, perform a QC check by reviewing the HTML files in the QC directory.
 o	Inspect the T2-weighted and T2-star images for segmentation and vertebral level labeling errors.
 o	If errors (e.g., segmentation leakage or under-segmentation) are found, manually correct them.
