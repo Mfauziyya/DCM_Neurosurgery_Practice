@@ -21,11 +21,16 @@ Due to the ongoing nature of the study, patient data is still being collected an
 - Spinal cord files are renamed according to BIDS standard https://bids.neuroimaging.io.
 
 ### Dependencies
-•	Spinal Cord Toolbox (SCT 6.1): Required for spinal cord segmentation and analysis.
-•	Python 3.9: The processing scripts are written in Python.
-•	FSL (FMRIB Software Library): Required for data visualization.
-Installation
-1.	Spinal Cord Toolbox (SCT): Follow the SCT installation guide for instructions on how to download and install SCT, and integrate it with FSL.
+- Spinal Cord Toolbox (SCT 6.1): Required for spinal cord segmentation and analysis.
+- Python 3.9: The processing scripts written in Python.
+- FSLeyes (FMRIB Software Library): Required for data visualization.
+
+## Installation
+- Spinal Cord Toolbox, SCT 6.1: Follow the SCT installation guide for instructions on how to download and install SCT, and integrate it with FSL. https://spinalcordtoolbox.com/user_section/installation/mac.html
+- Install script
+    ```bash
+    install_sct-<version>_macos.sh
+    ```
 2.	Python Environment:
 o	Install and activate a Python environment compatible with Python 3.9.
 o	Install the necessary Python dependencies listed in the requirements.txt file.
