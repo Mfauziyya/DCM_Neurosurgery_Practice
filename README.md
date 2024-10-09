@@ -31,13 +31,23 @@ Due to the ongoing nature of the study, patient data is still being collected an
     ```bash
     install_sct-<version>_macos.sh
     ```
-2.	Python Environment:
-o	Install and activate a Python environment compatible with Python 3.9.
-o	Install the necessary Python dependencies listed in the requirements.txt file.
-3.	Directory Setup:
-o	Create a directory for processing and organize all input files as per the BIDS format.
-o	Run the provided preprocessing script in batch mode.
-Preprocessing Steps
+- Python Environment:
+    - Install the necessary Python dependencies listed in the requirements.txt file.
+
+## Analysis Directory Setup
+- Create a directory for processing and organize all input files as per the BIDS format.
+- Run the provided preprocessing script in batch mode.
+```bash
+    sct_run_batch -h
+```
+- This is the processing script that loops across all participant data. use the help message to include the mandatory and optional arguments.
+
+#### example batch command
+```bash
+sct_run_batch -path-data /define/your/Data/directory/sourcedata/ -jobs 100 -path-output /define/your/analysis/folder -script /specify/your/code/location/Preprocession_extraction.sh -exclude-list [ ses-brain ]
+```
+
+### Preprocessing Steps
 1.	Spinal Cord Segmentation: Use sct_deepseg to segment the cervical spinal cord from surrounding neck tissues for DCM patients.
 2.	Quality Control:
 o	After preprocessing, perform a QC check by reviewing the HTML files in the QC directory.
