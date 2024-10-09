@@ -53,6 +53,7 @@ o	The CSV file can be used for secondary analysis to evaluate metrics such as sp
 This project processes spinal cord MRI images
 
 ![Spinal Cord Scan](./images/spinal_cord.png)
+<img src="./images/spinal_cord.png" alt="Spinal Cord Scan" width="250">
 
 
 ### Installation
