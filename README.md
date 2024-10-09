@@ -82,21 +82,3 @@ This project processes spinal cord MRI images
 <img src="./images/spinal_cord.png" alt="Spinal Cord Scan" width="250">
 
 
-### Installation
-
-To install, use:
-[Link Text](https://www.example.com)
-
-
-## This is a level 2 header
-### This is a level 3 header (smaller)
-
-- Item 1
-- Item 2
-1. First item
-2. Second item
-```bash
-echo "Hello World"
-```
-## This is a level 2 header
-### This is a level 3 header (smaller)
