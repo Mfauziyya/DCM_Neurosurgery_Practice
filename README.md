@@ -13,8 +13,7 @@ This repository contains the code for pre-processing structural T2-weighted, T2-
 ### About the OU Spine Dataset
 
 The OU Spine dataset was acquired using the https://spine-generic.readthedocs.io. The study is ongoing, involving patients diagnosed with DCM and a control cohort of healthy subjects (HC). All MRI scans were acquired using a 3T MR750 GE scanner.
-
-Due to the ongoing nature of the study, patient data is still being collected and analyzed. However, sample patient and control data are available. Full datasets are available upon reasonable request to the senior author.
+Due to the ongoing nature of the study, patient data is still being collected and analyzed. However, sample patient and control data are available in the Example data folder. Full datasets are available upon reasonable request to the senior author.
 
 ### Data Format and Organization
 - All MRI datasets were converted from DICOM to NIFTI format and are organized following the Brain Imaging Data Structure (BIDS) format.
