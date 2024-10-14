@@ -66,13 +66,11 @@ Spinal Cord MRI (T2 weighted, T2 star, MT) preprocessing include number of key s
     sct_register_to_template -i ${file_t2w}.nii.gz -s ${file_t2_seg}.nii.gz -ldisc ${file_t2_labels_discs}.nii.gz -c t2 -qc qc
 ```
 ## Quality Control:
-After preprocessing, perform a QC check by reviewing the HTML files in the QC directory.
-Inspect the T2-weighted and T2-star images for segmentation and vertebral level labeling errors.
-If errors (e.g., segmentation leakage or under-segmentation) are found, manually correct them.
-
-## Batch Re-run: 
-After corrections, re-run the batch analysis. The pipeline will automatically fetch manually corrected files from the designated folder ().
-4.	Result Export:
+- After preprocessing, perform a QC check by reviewing the HTML files in the QC directory.
+- Inspect the T2-weighted and T2-star images for segmentation and vertebral level labeling errors.
+- If errors (e.g., segmentation leakage or under-segmentation) and/or labelling error are found, manually correct them.
+- After corrections, re-run the batch analysis. The pipeline will automatically fetch manually corrected files from the designated folder(./BIDS/derivatives/label).
+## Result Export:
 o	The final morphometric measures will be exported to a CSV file.
 o	The CSV file can be used for secondary analysis to evaluate metrics such as spinal cord shape, gray matter segmentation, white matter intensity, MTR (Magnetization Transfer Ratio), etc.
 

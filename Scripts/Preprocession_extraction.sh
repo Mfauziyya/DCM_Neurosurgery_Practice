@@ -360,9 +360,9 @@ fi
 
 	
         # MTR
-        ########################
-        # White matter 51 or 0:29
-        #########################
+        ############################################################
+        # White matter 51 or 0:29 from all levels or across 2 levels
+        ############################################################
         sct_extract_metric -i mtr.nii.gz -l 51 -vert 2:3 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_wm_2_3.csv
         sct_extract_metric -i mtr.nii.gz -l 51 -vert 3:4 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_wm_3_4.csv
         sct_extract_metric -i mtr.nii.gz -l 51 -vert 4:5 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_wm_4_5.csv
