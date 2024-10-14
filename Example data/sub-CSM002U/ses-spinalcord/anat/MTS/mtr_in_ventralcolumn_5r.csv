@@ -1,0 +1,2 @@
+Timestamp,SCT Version,Filename,Slice (I->S),VertLevel,DistancePMJ,Label,Size [vox],MAP(),STD()
+"2024-05-13 22:51:04","6.0","/Users/FMUHAMMA/Desktop/Mri/sc_analysis_mtr_May/data_processed/sub-CSM002U/ses-spinalcord/anat/MTS/mtr.nii.gz","6:8","5","","15,17,19,21,23,25,27,29",25.272351379684572,36.91468360456035,9.252826873988562

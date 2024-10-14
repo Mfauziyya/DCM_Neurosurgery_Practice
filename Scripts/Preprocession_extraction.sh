@@ -417,11 +417,11 @@ fi
         sct_extract_metric -i mtr.nii.gz -l 2,3 -combine 1 -vert 6 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_6_FC.csv
         
          # dorsal column
-	    sct_extract_metric -i mtr.nii.gz -l 0,2 -combine 1 -vert 3 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_3l.csv
+	      sct_extract_metric -i mtr.nii.gz -l 0,2 -combine 1 -vert 3 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_3l.csv
         sct_extract_metric -i mtr.nii.gz -l 0,2 -combine 1 -vert 5 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_5l.csv
         sct_extract_metric -i mtr.nii.gz -l 1,3 -combine 1 -vert 3 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_3r.csv
         sct_extract_metric -i mtr.nii.gz -l 1,3 -combine 1 -vert 5 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_5r.csv
-	    sct_extract_metric -i mtr.nii.gz -l 53 -vert 2 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_2.csv
+	      sct_extract_metric -i mtr.nii.gz -l 53 -vert 2 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_2.csv
         sct_extract_metric -i mtr.nii.gz -l 53 -vert 3 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_3.csv
         sct_extract_metric -i mtr.nii.gz -l 53 -vert 4 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_4.csv
         sct_extract_metric -i mtr.nii.gz -l 53 -vert 5 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_5.csv

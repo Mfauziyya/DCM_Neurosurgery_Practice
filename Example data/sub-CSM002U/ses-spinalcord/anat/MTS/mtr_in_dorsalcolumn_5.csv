@@ -1,0 +1,3 @@
+Timestamp,SCT Version,Filename,Slice (I->S),VertLevel,DistancePMJ,Label,Size [vox],MAP(),STD()
+"2024-05-13 22:43:07","6.0","/Users/FMUHAMMA/Desktop/Mri/sc_analysis_mtr_May/data_processed/sub-CSM002U/ses-spinalcord/anat/MTS/mtr.nii.gz","6:8","5","","dorsal columns",72.74723164371419,49.816658971566554,9.617681213009458
+"2024-05-13 22:44:36","6.0","/Users/FMUHAMMA/Desktop/Mri/sc_analysis_mtr_May/data_processed/sub-CSM002U/ses-spinalcord/anat/MTS/mtr.nii.gz","3:5","6","","dorsal columns",55.466430164925285,44.53186785417492,8.112293701306523

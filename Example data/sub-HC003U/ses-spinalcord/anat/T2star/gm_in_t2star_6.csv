@@ -1,0 +1,3 @@
+Timestamp,SCT Version,Filename,Slice (I->S),VertLevel,DistancePMJ,Label,Size [vox],MAP(),STD()
+"2024-07-06 16:40:18","6.0","/Users/FMUHAMMA/Desktop/Mri/sc_analysis_T2s_2024-07-06-all/data_processed/sub-HC003U/ses-spinalcord/anat/T2star/sub-HC003U_ses-spinalcord_T2star_gmseg.nii.gz","3:5","6","","30,31,32,33,34,35",176.38194040421263,0.9986432229129211,0.4165193881436135
+"2024-07-08 14:21:00","6.0","/Users/FMUHAMMA/Desktop/Mri/sc_analysis_T2s_all/data_processed/sub-HC003U/ses-spinalcord/anat/T2star/sub-HC003U_ses-spinalcord_T2star_gmseg.nii.gz","3:5","6","","30,31,32,33,34,35",176.38194040421263,0.8296703296703297,0.4165193881436135
