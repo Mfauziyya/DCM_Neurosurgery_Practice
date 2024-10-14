@@ -147,6 +147,11 @@ if [[ $SES == *"spinalcord"* ]];then
 
 ##################################################################
 # Process T2w 
+# This section will perform 
+#-segmentation
+#-labeling
+# registration to PAM50 template space
+#extraction of morphometrics
 ##################################################################
 
 	# Add suffix corresponding to contrast
@@ -246,6 +251,11 @@ fi
  
 ##################################################################
 # Process T2star
+# This section will perform
+#GM and WM segmentation
+#Registration to PAM50 temaplate soace for normalized measures
+#GM Morphometric measures
+#Quantitative measure of GM and WM signal intensity
 ##################################################################
 file_t2star=${file}_T2star
     # Check if T2star image exists
@@ -303,9 +313,15 @@ file_t2star=${file}_T2star
     fi   
 fi	
 
-    # -------------------------------------------------------------------------
+    ###################################################################
     # MTS
-    # -------------------------------------------------------------------------
+    # This section will perform the following
+    #Segmentation
+    #Coregistration of MTon and Mtoff
+    #Multimodal registration
+   #MTR computation
+   #Region and tract-based MTR extraction at vertebral levels
+    ###################################################################
     # Add suffix corresponding to contrast
     file_MTS_t1w="${file}_acq-T1w_MTS"
     file_mton="${file}_acq-MTon_MTS"
