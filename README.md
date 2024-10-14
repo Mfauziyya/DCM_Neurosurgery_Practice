@@ -71,8 +71,9 @@ Spinal Cord MRI (T2 weighted, T2 star, MT) preprocessing include number of key s
 - If errors (e.g., segmentation leakage or under-segmentation) and/or labelling error are found, manually correct them.
 - After corrections, re-run the batch analysis. The pipeline will automatically fetch manually corrected files from the designated folder(./BIDS/derivatives/label).
 ## Result Export:
-o	The morphometric and MTR measures will be exported as CSV files.
-o	The CSV files can be used for secondary analysis to evaluate metrics such as T2-weighted morphpometrics (CSA,AP, RL, eccentricity, solidity, MSCC),gm and wm morphometrics, including signal intensity, MTR (Magnetization Transfer Ratio), etc.
+- Morphometric and MTR (Magnetization Transfer Ratio) measurements will be exported as CSV files.
+- These CSV files can be used for secondary analysis to assess metrics such as  T2-weighted morphometrics (CSA,AP, RL, eccentricity, solidity, MSCC) as well as GM and WM morphometrics, including signal intensity, and tract- and region-based MTR.
+- Additionally, the exported data can facilitate group analysis to compare cohorts.
 
 ## Publications
 
