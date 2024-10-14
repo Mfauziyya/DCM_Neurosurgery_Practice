@@ -146,11 +146,11 @@ if [[ $SES == *"spinalcord"* ]];then
 #<<comment
 
 ##################################################################
-# Process T2w 
-# This section will perform 
-#-segmentation
-#-labeling
-# registration to PAM50 template space
+#Process T2w 
+#This section will perform 
+#segmentation
+#labeling
+#registration to PAM50 template space
 #extraction of morphometrics
 ##################################################################
 
@@ -250,12 +250,12 @@ compression_if_does_not_exist() {
 fi
  
 ##################################################################
-# Process T2star
-# This section will perform
-#GM and WM segmentation
-#Registration to PAM50 temaplate soace for normalized measures
-#GM Morphometric measures
-#Quantitative measure of GM and WM signal intensity
+#Process T2star
+#This section will perform
+#gm and wm segmentation
+#registration to PAM50 template space for normalized measures
+#gm morphometric measures
+#quantitative measure of gm and wm signal intensity
 ##################################################################
 file_t2star=${file}_T2star
     # Check if T2star image exists
@@ -314,13 +314,13 @@ file_t2star=${file}_T2star
 fi	
 
     ###################################################################
-    # MTS
-    # This section will perform the following
-    #Segmentation
-    #Coregistration of MTon and Mtoff
-    #Multimodal registration
-   #MTR computation
-   #Region and tract-based MTR extraction at vertebral levels
+    #MTS
+    #This section will perform the following
+    #segmentation
+    #coregistration of MTon and Mtoff
+    #multimodal registration
+    #MTR computation
+    #region and tract-based MTR extraction at vertebral levels
     ###################################################################
     # Add suffix corresponding to contrast
     file_MTS_t1w="${file}_acq-T1w_MTS"

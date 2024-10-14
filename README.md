@@ -71,14 +71,15 @@ Spinal Cord MRI (T2 weighted, T2 star, MT) preprocessing include number of key s
 - If errors (e.g., segmentation leakage or under-segmentation) and/or labelling error are found, manually correct them.
 - After corrections, re-run the batch analysis. The pipeline will automatically fetch manually corrected files from the designated folder(./BIDS/derivatives/label).
 ## Result Export:
-o	The final morphometric measures will be exported to a CSV file.
-o	The CSV file can be used for secondary analysis to evaluate metrics such as spinal cord shape, gray matter segmentation, white matter intensity, MTR (Magnetization Transfer Ratio), etc.
+o	The morphometric and MTR measures will be exported as CSV files.
+o	The CSV files can be used for secondary analysis to evaluate metrics such as T2-weighted morphpometrics (CSA,AP, RL, eccentricity, solidity, MSCC),gm and wm morphometrics, including signal intensity, MTR (Magnetization Transfer Ratio), etc.
 
-### Spinal Cord Analysis
+## Publications
 
-This project processes spinal cord MRI images
+- Muhammad F, Weber KA, Bédard S, Haynes G, Smith L, Khan AF, Hameed S, Gray K, McGovern K, Rohan M, Ding L, Van Hal M, Dickson D, Al Tamimi M, Parrish T, Dhaher Y, Smith ZA. Cervical spinal cord morphometrics in degenerative cervical myelopathy: quantification using semi-automated normalized technique and correlation with neurological dysfunctions, The Spine Journal (2024), https://doi.org/10.1016/j.spinee.2024.07.002
 
-![Spinal Cord Scan](./images/spinal_cord.png)
-<img src="./images/spinal_cord.png" alt="Spinal Cord Scan" width="250">
+- Haynes G, Muhammad F, Weber KA II, Khan AF, Hameed S, Shakir H, Van Hal M, Dickson D, Rohan M, Dhaher Y, Parrish T, Ding L, Smith ZA. Tract-specific magnetization transfer ratio provides insights into the severity of degenerative cervical myelopathy. Spinal Cord (2024). https://doi.org/10.1038/s41393-024-01036-y
+
+
 
 
