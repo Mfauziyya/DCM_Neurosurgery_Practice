@@ -3,8 +3,8 @@
 #
 # Created by Ken Weber & Fauziyya 12/11/21.
 # 
-# Modified by Fauziyya Muhammad 11/15/23 using Spinalcord updatedd Command-Line Tools and Analysis Tutorials;https://spinalcordtoolbox.com/user_section/tutorials.html
-
+# Modified by Fauziyya Muhammad 11/15/23 using Spinalcord updated Command-Line Tools and Analysis Tutorials;https://spinalcordtoolbox.com/user_section/tutorials.html
+# Batch processing: Modified by Sandrine Bedard
 # Usage:
 # sct_run_batch  -path-data /Users/fmuhamma/Desktop/Mri/BIDS/sourcedata -jobs 1 -path-output  /Users/fmuhamma/Desktop/Mri/sc_analysis_dcm -script /Users/fmuhamma/Desktop/Mri/codes/preprocess_spinal_cord_new.sh -include-list [$subject_ID] exclude-list [$subject_ID]
 # This above will set up the analysis pathway called sc_analysis_dcm in the Mri directory. 
@@ -417,11 +417,11 @@ fi
         sct_extract_metric -i mtr.nii.gz -l 2,3 -combine 1 -vert 6 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_6_FC.csv
         
          # dorsal column
-	      sct_extract_metric -i mtr.nii.gz -l 0,2 -combine 1 -vert 3 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_3l.csv
+	    sct_extract_metric -i mtr.nii.gz -l 0,2 -combine 1 -vert 3 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_3l.csv
         sct_extract_metric -i mtr.nii.gz -l 0,2 -combine 1 -vert 5 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_5l.csv
         sct_extract_metric -i mtr.nii.gz -l 1,3 -combine 1 -vert 3 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_3r.csv
         sct_extract_metric -i mtr.nii.gz -l 1,3 -combine 1 -vert 5 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_5r.csv
-	      sct_extract_metric -i mtr.nii.gz -l 53 -vert 2 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_2.csv
+	    sct_extract_metric -i mtr.nii.gz -l 53 -vert 2 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_2.csv
         sct_extract_metric -i mtr.nii.gz -l 53 -vert 3 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_3.csv
         sct_extract_metric -i mtr.nii.gz -l 53 -vert 4 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_4.csv
         sct_extract_metric -i mtr.nii.gz -l 53 -vert 5 -method map -f label/atlas -vertfile label/template/PAM50_levels.nii.gz -append 1 -o mtr_in_dorsalcolumn_5.csv
