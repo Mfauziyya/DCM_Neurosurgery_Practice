@@ -68,8 +68,8 @@ Here is an example of our data organization
 - FSLeyes (FMRIB Software Library): Required for data visualization.
 
 ## Installation
-- Spinal Cord Toolbox, SCT 6.1: Follow the SCT installation guide for instructions on how to download and install SCT, and integrate it with FSL. https://spinalcordtoolbox.com/user_section/installation/mac.html
-- Install script
+- Spinal Cord Toolbox, SCT 6.1: Follow the SCT installation guide for instructions on how to download and install SCT, and integrate it with FSL. https://spinalcordtoolbox.com/user_section/installation.html
+- Install script for MacOS
     ```bash
      install_sct-<version>_macos.sh
     ```
@@ -78,39 +78,38 @@ Here is an example of our data organization
 
 ## Analysis Directory Setup
 - Create a directory for processing and organize all input files as per the BIDS format.
+- Spinal Cord Toolbox [(SCT 6.1)](https://github.com/spinalcordtoolbox/spinalcordtoolbox/releases/tag/6.1): Required   for spinal cord segmentation and analysis.
+ - Python 3.9: The processing scripts written in Python. (or analysis scripts? I don't see it in your batch script)
+ - [FSLeyes](https://open.win.ox.ac.uk/pages/fsl/fsleyes/fsleyes/userdoc/install.html) (FMRIB Software Library): Required for data visualization. (could be ITKsnap, 3Dslicer...)
+
+ ### Installation
+ - Spinal Cord Toolbox, [SCT 6.1](https://github.com/spinalcordtoolbox/spinalcordtoolbox/releases/tag/6.1) : Follow the SCT installation guide for instructions on how to download and install SCT script for version 6.1, and integrate it with FSL. [https://spinalcordtoolbox.com/user_section/installation.html](https://spinalcordtoolbox.com/en/stable/user_section/installation.html)
+
+
 ### Usage
 - Run the provided preprocessing script in batch mode.
 ```bash
     sct_run_batch -h
 ```
-- This is the processing script that loops across all participant data. use the help message to include the mandatory and optional arguments.
+- This is the processing script that loops across all participant data. Use the help message to include the mandatory and optional arguments.
 
-#### example batch command
+#### Example command
 ```bash
 sct_run_batch -path-data /define/your/data/directory/sourcedata/ -jobs 50 -path-output /define/your/analysis/folder -script /specify/your/code/location/Preprocession_extraction.sh -exclude-list [ ses-brain ]
 ```
+ - `-path-data`: path to data folder to be processed in BIDS format.
+ - `-jobs`: Number of subject to run in parallel.
+ - `-path-output`: Path of analysis results.
+ - `-script`: preprocessing script (`DCM_Neurosurgery_Practice/Scripts/Preprocession_extraction.sh`).
+ - `-exclude-list`: list of subjects or session to exclude from the analysis.
+ #### Note
+ include the qc flag to generate the quality control report for this step
 
-### Preprocessing Steps
-Spinal Cord MRI (T2 weighted, T2 star, MT) preprocessing include number of key steps 
-#### T2 weighted
-1. Spinal cord Segmentation
-```bash
-    sct_deepseg_sc -i ${file}.nii.gz -c t2 -qc qc
-```
--    To segment the cervical spinal cord from surrounding neck tissues.
--    include the qc flag to generate QC report for this step
-2. Vertebral labeling
-```bash
-   sct_label_vertebrae -i ${file}.nii.gz -s ${file_seg}.nii.gz -c t2 -qc qc
-```
-3. Registration to PAM50 template 
-```bash
-    sct_register_to_template -i ${file_t2w}.nii.gz -s ${file_t2_seg}.nii.gz -ldisc ${file_t2_labels_discs}.nii.gz -c t2 -qc qc
-```
+
 ## Quality Control:
-- After preprocessing, perform a QC check by reviewing the HTML files in the QC directory.
-- Inspect the T2-weighted and T2-star images for segmentation and vertebral level labeling errors.
-- If errors (e.g., segmentation leakage or under-segmentation) and/or labelling error are found, manually correct them.
+- After preprocessing, perform a QC check by reviewing the HTML files in the QC directory: `<path-out>/qc/index.html`.
+- Inspect the T2-weighted and T2-star images for segmentation and vertebral level labeling errors:
+- If errors (e.g., segmentation leakage or under-segmentation) and/or labelling error are found, manually correct them and save them under derivatives/label.
 - After corrections, re-run the batch analysis. The pipeline will automatically fetch manually corrected files from the designated folder(./BIDS/derivatives/label).
 ## Result Export:
 - Morphometric and MTR (Magnetization Transfer Ratio) measurements will be exported as CSV files.
