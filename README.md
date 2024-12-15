@@ -3,7 +3,19 @@
 ## Description
 
 This repository contains the code for pre-processing structural T2-weighted, T2-star, and magnetization transfer MRI images. The primary goal is to estimate biomarkers such as spinal cord atrophy, gray matter atrophy, and white matter injury in patients with degenerative cervical myelopathy (DCM). This pipeline is designed to provide reproducible, standardized, and localized measures of spinal cord injury.
-## Objectives
+## Table of Contents
+- [Objectives](#objectives)
+- [About the OU Spine Dataset](#about-the-ou-spine-dataset)
+- [Data Format and Organization](#data-format-and-organization)
+- [Dependencies](#dependencies)
+- [Installation](#installation)
+- [Analysis Directory Setup](#analysis-directory-setup)
+- [Quality Control](#quality-control)
+- [Result Export](#result-export)
+- [Publications](#publications)
+
+
+### Objectives
 
 1. Reproducible Analysis Pipeline: A user-friendly pipeline for batch processing of spinal cord morphometrics.
 2. Standardized Measures: Generate standardized and normalized morphometric using the PAM50 spinal cord template measures for comparison between patients and controls.
@@ -17,8 +29,39 @@ Due to the ongoing nature of the study, patient data is still being collected an
 
 ### Data Format and Organization
 - All MRI datasets were converted from DICOM to NIFTI format and are organized following the Brain Imaging Data Structure (BIDS) format.
+- Conversion command
+ ```bash
+     dcm2niix -f <output_directory/output_file_name> <input_directory> 
+  ```
 - Spinal cord files are renamed according to BIDS standard https://bids.neuroimaging.io.
-
+Here is an example of our data organization
+    ```bash
+        OU_DCM_2024/data_processed/sub-CSM030
+        ├── derivatives
+        │   └── labels
+        │       └── sub-CSM030
+        │           └── ses-spinalcord
+        │               └── anat
+        │                   ├── sub-CSM030_ses-spinalcord_T2star.nii.gz
+        │                   ├── sub-CSM030_ses-spinalcord_T2star_seg.nii.gz
+        │                   ├── sub-CSM030_ses-spinalcord_T2w.nii.gz
+        │                   ├── sub-CSM030_ses-spinalcord_T2w_label-compression-manual.nii.gz
+        │                   ├── sub-CSM030_ses-spinalcord_T2w_seg.nii.gz
+        │                   └── sub-CSM030_ses-spinalcord_acq-MTon_MTS_seg.nii.gz
+        └── sourcedata
+            └── sub-CSM030
+                └── ses-spinalcord
+                    └── anat
+                        ├── sub-CSM030_ses-spinalcord_3DMAGiC.nii.gz
+                        ├── sub-CSM030_ses-spinalcord_T2star.nii.gz
+                        ├── sub-CSM030_ses-spinalcord_T2w.nii.gz
+                        ├── sub-CSM030_ses-spinalcord_acq-MToff_MTS.json
+                        ├── sub-CSM030_ses-spinalcord_acq-MToff_MTS.nii.gz
+                        ├── sub-CSM030_ses-spinalcord_acq-MTon_MTS.json
+                        ├── sub-CSM030_ses-spinalcord_acq-MTon_MTS.nii.gz
+                        ├── sub-CSM030_ses-spinalcord_acq-T1w_MTS.json
+                        └── sub-CSM030_ses-spinalcord_acq-T1w_MTS.nii.gz
+    ```
 ### Dependencies
 - Spinal Cord Toolbox (SCT 6.1): Required for spinal cord segmentation and analysis.
 - Python 3.9: The processing scripts written in Python.
@@ -28,7 +71,7 @@ Due to the ongoing nature of the study, patient data is still being collected an
 - Spinal Cord Toolbox, SCT 6.1: Follow the SCT installation guide for instructions on how to download and install SCT, and integrate it with FSL. https://spinalcordtoolbox.com/user_section/installation/mac.html
 - Install script
     ```bash
-    install_sct-<version>_macos.sh
+     install_sct-<version>_macos.sh
     ```
 - Python Environment:
     - Install the necessary Python dependencies listed in the requirements.txt file.
